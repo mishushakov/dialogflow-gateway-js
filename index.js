@@ -36,18 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
-var Gateway = /** @class */ (function () {
-    function Gateway(agent, endpoint) {
+var Client = /** @class */ (function () {
+    function Client(id) {
         var _this = this;
-        this.agent = agent;
-        this.endpoint = endpoint;
+        this.id = id;
+        this.connect = function () { return __awaiter(_this, void 0, void 0, function () {
+            var response, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, axios_1.default.get(this.endpoint)];
+                    case 1:
+                        response = _a.sent();
+                        this.agent = response.data;
+                        return [2 /*return*/, this];
+                    case 2:
+                        error_1 = _a.sent();
+                        throw error_1;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        }); };
         this.get = function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.agent];
             });
         }); };
         this.request = function (request) { return __awaiter(_this, void 0, void 0, function () {
-            var response, result, error_1;
+            var response, result, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -59,32 +76,6 @@ var Gateway = /** @class */ (function () {
                         result = response.data;
                         return [2 /*return*/, result];
                     case 2:
-                        error_1 = _a.sent();
-                        throw error_1;
-                    case 3: return [2 /*return*/];
-                }
-            });
-        }); };
-        this.agent = agent;
-        this.endpoint = endpoint;
-    }
-    return Gateway;
-}());
-var Client = /** @class */ (function () {
-    function Client(id) {
-        var _this = this;
-        this.id = id;
-        this.connect = function () { return __awaiter(_this, void 0, void 0, function () {
-            var response, error_2;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, axios_1.default.get(this.endpoint)];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, new Gateway(response.data, this.endpoint)];
-                    case 2:
                         error_2 = _a.sent();
                         throw error_2;
                     case 3: return [2 /*return*/];
@@ -93,6 +84,7 @@ var Client = /** @class */ (function () {
         }); };
         this.id = id;
         this.endpoint = "https://" + this.id + ".gateway.dialogflow.cloud.ushakov.co";
+        this.agent = null;
     }
     return Client;
 }());

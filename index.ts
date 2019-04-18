@@ -1,10 +1,26 @@
 import axios from 'axios'
 import { Agent, DetectIntentRequest, DetectIntentResponse } from 'dialogflow'
 
-class Gateway {
-    constructor(public agent: Agent, public endpoint: string){
-        this.agent = agent
-        this.endpoint = endpoint
+export class Client {
+    endpoint: string
+    agent: Agent
+
+    constructor(public id: string){
+        this.id = id
+        this.endpoint = `https://${this.id}.gateway.dialogflow.cloud.ushakov.co`
+        this.agent = null
+    }
+
+    connect = async () => {
+        try {
+            let response = await axios.get(this.endpoint)
+            this.agent = response.data
+            return this
+        }
+
+        catch (error) {
+            throw error
+        }
     }
 
     get = async () => {
@@ -18,26 +34,6 @@ class Gateway {
             result = response.data
 
             return result
-        }
-
-        catch (error) {
-            throw error
-        }
-    }
-}
-
-export class Client {
-    endpoint: string
-
-    constructor(public id: string){
-        this.id = id
-        this.endpoint = `https://${this.id}.gateway.dialogflow.cloud.ushakov.co`
-    }
-
-    connect = async () => {
-        try {
-            let response = await axios.get(this.endpoint)
-            return new Gateway(response.data, this.endpoint)
         }
 
         catch (error) {

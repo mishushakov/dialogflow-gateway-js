@@ -21,6 +21,18 @@ Browser:
 <script src="https://unpkg.com/@ushacom/dialogflow-gateway-js@latest/build/bundle.js"></script>
 ```
 
+## Usage
+
+Link your Agent to [Dialogflow Gateway](https://dialogflow.cloud.ushakov.co), you can find a detailed guide [here](https://github.com/mishushakov/dialogflow-gateway-docs/blob/master/guide.md)
+
+Then, connect client to your Gateway:
+
+```js
+import { Client } from '@ushacom/dialogflow-gateway-js'
+
+new Client('<YOUR GOOGLE PROJECT ID HERE>').connect()
+```
+
 ## Examples
 
 With Async/Await and ES Modules
