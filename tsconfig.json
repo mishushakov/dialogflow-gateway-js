@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "baseUrl": "./src",
+        "baseUrl": "./",
         "outDir": "./",
         "target": "es5",
         "module": "es2015",
