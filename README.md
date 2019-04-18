@@ -1,6 +1,7 @@
 # Dialogflow Gateway JavaScript Client
 
-Dialogflow Gateway is a cloud-based service, which connects Dialogflow V2 Agents to the World Wide Web
+[Dialogflow Gateway](https://dialogflow.cloud.ushakov.co) is a cloud-based service, which connects Dialogflow V2 Agents to the World Wide Web
+
 This is the Official Dialogflow Gateway JavaScript Client.
 It can be used both in browser and node as a replacement for the deprecated `dialogflow-javascript-client` library, by @dialogflow
 
@@ -17,7 +18,7 @@ Yarn:
 Browser:
 
 ```html
-<script src="https://unpkg.com/@ushacom/dialogflow-gateway-js@latest"></script>
+<script src="https://unpkg.com/@ushacom/dialogflow-gateway-js@latest/build/bundle.js"></script>
 ```
 
 ## Examples
@@ -25,11 +26,11 @@ Browser:
 With Async/Await and ES Modules
 
 ```js
-import { Gateway } from './index'
+import { Client } from '@ushacom/dialogflow-gateway-js'
 
 async () => {
     /* Connecting Dialogflow Gateway Client */
-    let client = await new Gateway('dialogflow-web-v2').connect()
+    let client = await new Client('dialogflow-web-v2').connect()
 
     /* Making Text request */
     let response = await client.request({
@@ -52,9 +53,10 @@ async () => {
 Same code in NodeJS (with require and promises)
 
 ```js
-let { Gateway } = require('@ushacom/dialogflow-gateway-js')
+let { Client } = require('@ushacom/dialogflow-gateway-js')
 
-new Gateway('dialogflow-web-v2').connect()
+/* Connecting Dialogflow Gateway Client */
+new Client('dialogflow-web-v2').connect()
 .then(agent => {
     /* Making Text request */
     let res = agent.request({
@@ -73,11 +75,11 @@ new Gateway('dialogflow-web-v2').connect()
 })
 ```
 
-Same code in Browser. Notice, that we are using `df` scope
+Same code in Browser. Notice, that we are using the `df` scope
 
 ```js
 /* Connecting Dialogflow Gateway Client */
-let client = new df.Gateway('dialogflow-web-v2').connect()
+let client = new df.Client('dialogflow-web-v2').connect()
 .then(agent => {
     /* Making Text request */
     let res = agent.request({

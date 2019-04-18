@@ -3,7 +3,7 @@
         "baseUrl": "./",
         "outDir": "./",
         "target": "es5",
-        "module": "es2015",
+        "module": "commonjs",
         "moduleResolution": "node",
         "lib": ["es2016", "dom", "es5"]
     },
