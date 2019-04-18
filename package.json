@@ -1,6 +1,6 @@
 {
   "name": "@ushacom/dialogflow-gateway-js",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Official Dialogflow Gateway JavaScript Client",
   "main": "index.js",
   "repository": "github.com/MishUshakov/dialogflow-gateway-js",
