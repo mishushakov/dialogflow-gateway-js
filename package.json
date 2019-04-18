@@ -1,6 +1,6 @@
 {
   "name": "@ushacom/dialogflow-gateway-js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Official Dialogflow Gateway JavaScript Client",
   "main": "index.js",
   "repository": "https://github.com/MishUshakov/dialogflow-gateway-js",
@@ -19,11 +19,12 @@
     "expose-loader": "^0.7.5",
     "ts-loader": "^5.3.3",
     "typescript": "^3.4.3",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.0"
   },
   "scripts": {
     "dev": "tsc && node ./test",
-    "build": "tsc && webpack"
+    "build": "webpack"
   }
 }
