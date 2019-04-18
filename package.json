@@ -1,9 +1,9 @@
 {
   "name": "@ushacom/dialogflow-gateway-js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Official Dialogflow Gateway JavaScript Client",
   "main": "index.js",
-  "repository": "github.com/MishUshakov/dialogflow-gateway-js",
+  "repository": "https://github.com/MishUshakov/dialogflow-gateway-js",
   "author": "MishUshakov",
   "license": "MIT",
   "homepage": "https://dialogflow.cloud.ushakov.co",
@@ -11,7 +11,6 @@
     "dialogflow",
     "api.ai"
   ],
-  "readme": "README.md",
   "dependencies": {
     "axios": "^0.18.0"
   },
@@ -24,6 +23,6 @@
     "webpack-cli": "^3.3.0"
   },
   "scripts": {
-    "build": "tsc && webpack"
+    "build": "webpack"
   }
 }
