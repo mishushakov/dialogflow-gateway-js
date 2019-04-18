@@ -1,9 +1,11 @@
-# Dialogflow Gateway JavaScript Client
+# Dialogflow Gateway JavaScript SDK
 
 [Dialogflow Gateway](https://dialogflow.cloud.ushakov.co) is a cloud-based service, which connects Dialogflow V2 Agents to the World Wide Web
 
 This is the Official Dialogflow Gateway JavaScript Client.
 It can be used both in browser and node as a replacement for the deprecated `dialogflow-javascript-client` library, by @dialogflow
+
+⚡️ Blazing-fast and super-small (<10KB gzipped)
 
 ## Installation
 

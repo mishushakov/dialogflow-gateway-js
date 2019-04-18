@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
-var Client = /** @class */ (function () {
+var Client = (function () {
     function Client(id) {
         var _this = this;
         this.id = id;
@@ -46,21 +46,21 @@ var Client = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, axios_1.default.get(this.endpoint)];
+                        return [4, axios_1.default.get(this.endpoint)];
                     case 1:
                         response = _a.sent();
                         this.agent = response.data;
-                        return [2 /*return*/, this];
+                        return [2, this];
                     case 2:
                         error_1 = _a.sent();
                         throw error_1;
-                    case 3: return [2 /*return*/];
+                    case 3: return [2];
                 }
             });
         }); };
         this.get = function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.agent];
+                return [2, this.agent];
             });
         }); };
         this.request = function (request) { return __awaiter(_this, void 0, void 0, function () {
@@ -69,16 +69,16 @@ var Client = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, axios_1.default.post(this.endpoint + "/" + request.session, request)];
+                        return [4, axios_1.default.post(this.endpoint + "/" + request.session, request)];
                     case 1:
                         response = _a.sent();
                         result = void 0;
                         result = response.data;
-                        return [2 /*return*/, result];
+                        return [2, result];
                     case 2:
                         error_2 = _a.sent();
                         throw error_2;
-                    case 3: return [2 /*return*/];
+                    case 3: return [2];
                 }
             });
         }); };
