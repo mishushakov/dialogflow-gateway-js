@@ -3,15 +3,14 @@
         "baseUrl": "./src",
         "outDir": "./",
         "target": "es5",
-        "module": "umd",
+        "module": "es2015",
         "moduleResolution": "node",
-        "lib": ["es2016", "es5"]
+        "lib": ["es2016", "dom", "es5"]
     },
     "types": [
         "dialogflow"
     ],
     "exclude": [
-        "node_modules",
-        "./src/test.ts"
+        "node_modules"
     ]
 }
