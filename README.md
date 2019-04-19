@@ -27,7 +27,7 @@ Browser:
 
 Link your Agent to [Dialogflow Gateway](https://dialogflow.cloud.ushakov.co), you can find a detailed guide [here](https://github.com/mishushakov/dialogflow-gateway-docs/blob/master/guide.md)
 
-Then, connect client to your Gateway:
+Then, import the library and connect client to your Gateway:
 
 ```js
 import { Client } from 'dialogflow-gateway'
@@ -71,9 +71,9 @@ let { Client } = require('dialogflow-gateway')
 
 /* Connecting Dialogflow Gateway Client */
 new Client('dialogflow-web-v2').connect()
-.then(agent => {
+.then(client => {
     /* Making Text request */
-    agent.request({
+    client.request({
         session: 'test',
         queryInput: {
             text: {
@@ -83,9 +83,9 @@ new Client('dialogflow-web-v2').connect()
         }
     })
     .then(response => console.log(response))
-    
+
     /* Getting Agent information */
-    agent.get().then(agent => console.log(agent))
+    client.get().then(agent => console.log(agent))
 })
 ```
 
@@ -93,10 +93,10 @@ Same code in Browser. Notice, that we are using the `df` scope
 
 ```js
 /* Connecting Dialogflow Gateway Client */
-let client = new df.Client('dialogflow-web-v2').connect()
-.then(agent => {
+new df.Client('dialogflow-web-v2').connect()
+.then(client => {
     /* Making Text request */
-    agent.request({
+    client.request({
         session: 'test',
         queryInput: {
             text: {
@@ -108,11 +108,11 @@ let client = new df.Client('dialogflow-web-v2').connect()
     .then(response => console.log(response))
 
     /* Getting Agent information */
-    agent.get().then(agent => console.log(agent))
+    client.get().then(agent => console.log(agent))
 })
 ```
 
-Request with the formatting option enabled (for iterating over components):
+Request with formatting option enabled (for iterating over components):
 
 ```js
 client.request({
