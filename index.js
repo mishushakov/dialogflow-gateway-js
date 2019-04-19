@@ -35,50 +35,55 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var axios_1 = require("axios");
-var Client = (function () {
+require("isomorphic-fetch");
+var Client = /** @class */ (function () {
     function Client(id) {
         var _this = this;
         this.id = id;
         this.connect = function () { return __awaiter(_this, void 0, void 0, function () {
-            var response, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var response, _a, error_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4, axios_1.default.get(this.endpoint)];
+                        _b.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, fetch(this.endpoint)];
                     case 1:
-                        response = _a.sent();
-                        this.agent = response.data;
-                        return [2, this];
+                        response = _b.sent();
+                        _a = this;
+                        return [4 /*yield*/, response.json()];
                     case 2:
-                        error_1 = _a.sent();
+                        _a.agent = _b.sent();
+                        return [2 /*return*/, this];
+                    case 3:
+                        error_1 = _b.sent();
                         throw error_1;
-                    case 3: return [2];
+                    case 4: return [2 /*return*/];
                 }
             });
         }); };
         this.get = function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2, this.agent];
+                return [2 /*return*/, this.agent];
             });
         }); };
-        this.request = function (request) { return __awaiter(_this, void 0, void 0, function () {
+        this.request = function (request, format) { return __awaiter(_this, void 0, void 0, function () {
             var response, result, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4, axios_1.default.post(this.endpoint + "/" + request.session, request)];
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, fetch(this.endpoint + "/" + request.session + "?format=" + (format || false), { method: 'POST', body: JSON.stringify(request), headers: { 'Content-Type': 'application/json' } })];
                     case 1:
                         response = _a.sent();
                         result = void 0;
-                        result = response.data;
-                        return [2, result];
+                        return [4 /*yield*/, response.json()];
                     case 2:
+                        result = _a.sent();
+                        return [2 /*return*/, result];
+                    case 3:
                         error_2 = _a.sent();
                         throw error_2;
-                    case 3: return [2];
+                    case 4: return [2 /*return*/];
                 }
             });
         }); };

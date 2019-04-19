@@ -1,4 +1,4 @@
-import axios from 'axios'
+import 'isomorphic-fetch'
 import { Agent, DetectIntentRequest, DetectIntentResponse } from 'dialogflow'
 
 export class Client {
@@ -13,8 +13,8 @@ export class Client {
 
     connect = async () => {
         try {
-            let response = await axios.get(this.endpoint)
-            this.agent = response.data
+            let response = await fetch(this.endpoint)
+            this.agent = await response.json()
             return this
         }
 
@@ -27,11 +27,11 @@ export class Client {
         return this.agent
     }
 
-    request = async (request: DetectIntentRequest) => {
+    request = async (request: DetectIntentRequest, format?: boolean) => {
         try {
-            let response = await axios.post(`${this.endpoint}/${request.session}`, request)
+            let response = await fetch(`${this.endpoint}/${request.session}?format=${format || false}`, {method: 'POST', body: JSON.stringify(request), headers: {'Content-Type': 'application/json'}})
             let result: DetectIntentResponse
-            result = response.data
+            result = await response.json()
 
             return result
         }

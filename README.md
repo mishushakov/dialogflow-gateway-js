@@ -5,22 +5,22 @@
 This is the Official Dialogflow Gateway JavaScript Client.
 It can be used both in browser and node as a replacement for the deprecated `dialogflow-javascript-client` library, by @dialogflow
 
-⚡️ Blazing-fast and super-small (<10KB gzipped)
+⚡️ Blazing-fast and super-small (<10KB)
 
 ## Installation
 
 npm:
 
-`npm install @ushacom/dialogflow-gateway-js`
+`npm install dialogflow-gateway`
 
 Yarn:
 
-`yarn add @ushacom/dialogflow-gateway-js`
+`yarn add dialogflow-gateway`
 
 Browser:
 
 ```html
-<script src="https://unpkg.com/@ushacom/dialogflow-gateway-js@latest/build/bundle.js"></script>
+<script src="https://unpkg.com/dialogflow-gateway@latest/build/bundle.js"></script>
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ Link your Agent to [Dialogflow Gateway](https://dialogflow.cloud.ushakov.co), yo
 Then, connect client to your Gateway:
 
 ```js
-import { Client } from '@ushacom/dialogflow-gateway-js'
+import { Client } from 'dialogflow-gateway'
 
 new Client('<YOUR GOOGLE PROJECT ID HERE>').connect()
 ```
@@ -40,7 +40,7 @@ new Client('<YOUR GOOGLE PROJECT ID HERE>').connect()
 With Async/Await and ES Modules
 
 ```js
-import { Client } from '@ushacom/dialogflow-gateway-js'
+import { Client } from 'dialogflow-gateway'
 
 async () => {
     /* Connecting Dialogflow Gateway Client */
@@ -67,13 +67,13 @@ async () => {
 Same code in NodeJS (with require and promises)
 
 ```js
-let { Client } = require('@ushacom/dialogflow-gateway-js')
+let { Client } = require('dialogflow-gateway')
 
 /* Connecting Dialogflow Gateway Client */
 new Client('dialogflow-web-v2').connect()
 .then(agent => {
     /* Making Text request */
-    let res = agent.request({
+    agent.request({
         session: 'test',
         queryInput: {
             text: {
@@ -96,7 +96,7 @@ Same code in Browser. Notice, that we are using the `df` scope
 let client = new df.Client('dialogflow-web-v2').connect()
 .then(agent => {
     /* Making Text request */
-    let res = agent.request({
+    agent.request({
         session: 'test',
         queryInput: {
             text: {
@@ -110,4 +110,18 @@ let client = new df.Client('dialogflow-web-v2').connect()
     /* Getting Agent information */
     agent.get().then(agent => console.log(agent))
 })
+```
+
+Request with the formatting option enabled (for iterating over components):
+
+```js
+client.request({
+    session: 'test',
+    queryInput: {
+        text: {
+            text: "Hello",
+            languageCode: "en"
+        }
+    }
+}, true)
 ```

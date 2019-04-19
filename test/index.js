@@ -4,7 +4,7 @@ let { Client } = require('./../index')
 new Client('dialogflow-web-v2').connect()
 .then(agent => {
     /* Making Text request */
-    let res = agent.request({
+    agent.request({
         session: 'test',
         queryInput: {
             text: {
@@ -12,8 +12,8 @@ new Client('dialogflow-web-v2').connect()
                 languageCode: "en"
             }
         }
-    })
-    .then(response => console.log(response))
+    }, true)
+    .then(response => console.log(response.queryResult.fulfillmentMessages))
     
     /* Getting Agent information */
     agent.get().then(agent => console.log(agent))
