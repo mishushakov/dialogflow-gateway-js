@@ -36,10 +36,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("isomorphic-fetch");
+/** Class representing Dialogflow Gateway Client */
 var Client = /** @class */ (function () {
+    /**
+     * Create a Dialogflow Gateway Client
+     * @param id - The identifier of your Google Cloud project, that is connected to Dialogflow Gateway
+     */
     function Client(id) {
         var _this = this;
         this.id = id;
+        /** Connect your Client to Dialogflow Gateway */
         this.connect = function () { return __awaiter(_this, void 0, void 0, function () {
             var response, _a, error_1;
             return __generator(this, function (_b) {
@@ -61,13 +67,19 @@ var Client = /** @class */ (function () {
                 }
             });
         }); };
+        /** Get Information about connected Agent */
         this.get = function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.agent];
             });
         }); };
+        /**
+         * Make request to Dialogflow Dialogflow Gateway
+         * @param request - Request body
+         * @param format - Formatting mode
+         */
         this.request = function (request, format) { return __awaiter(_this, void 0, void 0, function () {
-            var response, result, error_2;
+            var response, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -75,11 +87,8 @@ var Client = /** @class */ (function () {
                         return [4 /*yield*/, fetch(this.endpoint + "/" + request.session + "?format=" + (format || false), { method: 'POST', body: JSON.stringify(request), headers: { 'Content-Type': 'application/json' } })];
                     case 1:
                         response = _a.sent();
-                        result = void 0;
                         return [4 /*yield*/, response.json()];
-                    case 2:
-                        result = _a.sent();
-                        return [2 /*return*/, result];
+                    case 2: return [2 /*return*/, _a.sent()];
                     case 3:
                         error_2 = _a.sent();
                         throw error_2;
