@@ -10,7 +10,7 @@ export class Client {
 
     /**
      * Create a Dialogflow Gateway Client
-     * @param id - The identifier of your Google Cloud project, that is connected to Dialogflow Gateway
+     * @param id - The identifier of Google Cloud project, that is connected to Dialogflow Gateway
      */
     constructor(public id: string){
         this.id = id
@@ -18,7 +18,7 @@ export class Client {
         this.agent = null
     }
 
-    /** Connect your Client to Dialogflow Gateway */
+    /** Connect the Dialogflow Gateway Client to Dialogflow Gateway */
     connect = async () => {
         try {
             let response = await fetch(this.endpoint)
@@ -37,7 +37,7 @@ export class Client {
     }
 
     /**
-     * Make request to Dialogflow Dialogflow Gateway
+     * Make request to Dialogflow Gateway
      * @param request - Request body
      * @param format - Formatting mode
      */

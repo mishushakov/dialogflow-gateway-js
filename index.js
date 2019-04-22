@@ -40,12 +40,12 @@ require("isomorphic-fetch");
 var Client = /** @class */ (function () {
     /**
      * Create a Dialogflow Gateway Client
-     * @param id - The identifier of your Google Cloud project, that is connected to Dialogflow Gateway
+     * @param id - The identifier of Google Cloud project, that is connected to Dialogflow Gateway
      */
     function Client(id) {
         var _this = this;
         this.id = id;
-        /** Connect your Client to Dialogflow Gateway */
+        /** Connect the Dialogflow Gateway Client to Dialogflow Gateway */
         this.connect = function () { return __awaiter(_this, void 0, void 0, function () {
             var response, _a, error_1;
             return __generator(this, function (_b) {
@@ -74,7 +74,7 @@ var Client = /** @class */ (function () {
             });
         }); };
         /**
-         * Make request to Dialogflow Dialogflow Gateway
+         * Make request to Dialogflow Gateway
          * @param request - Request body
          * @param format - Formatting mode
          */
