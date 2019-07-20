@@ -1,6 +1,6 @@
 {
   "name": "dialogflow-gateway",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Dialogflow V2 JS SDK for node and browser. Written in TypeScript",
   "main": "index.js",
   "repository": "https://github.com/MishUshakov/dialogflow-gateway-js",
@@ -9,7 +9,8 @@
   "homepage": "https://dialogflow.cloud.ushakov.co",
   "keywords": [
     "dialogflow",
-    "api.ai"
+    "api.ai",
+    "client"
   ],
   "dependencies": {
     "isomorphic-fetch": "^2.2.1"
