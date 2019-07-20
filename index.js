@@ -78,13 +78,13 @@ var Client = /** @class */ (function () {
          * @param request - Request body
          * @param format - Formatting mode
          */
-        this.request = function (request, format) { return __awaiter(_this, void 0, void 0, function () {
+        this.request = function (request) { return __awaiter(_this, void 0, void 0, function () {
             var response, error_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, fetch(this.endpoint + "/" + request.session + "?format=" + (format || false), { method: 'POST', body: JSON.stringify(request), headers: { 'Content-Type': 'application/json' } })];
+                        return [4 /*yield*/, fetch(this.endpoint + "/" + request.session, { method: 'POST', body: JSON.stringify(request), headers: { 'Content-Type': 'application/json' } })];
                     case 1:
                         response = _a.sent();
                         return [4 /*yield*/, response.json()];

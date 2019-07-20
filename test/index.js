@@ -12,7 +12,7 @@ new Client('dialogflow-web-v2').connect()
                 languageCode: "en"
             }
         }
-    }, true)
+    })
     .then(response => console.log(response))
 
     /* Getting Agent information */

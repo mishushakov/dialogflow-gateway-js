@@ -41,9 +41,9 @@ export class Client {
      * @param request - Request body
      * @param format - Formatting mode
      */
-    request = async (request: DetectIntentRequest, format?: boolean): Promise<DetectIntentResponse> => {
+    request = async (request: DetectIntentRequest): Promise<DetectIntentResponse> => {
         try {
-            let response = await fetch(`${this.endpoint}/${request.session}?format=${format || false}`, {method: 'POST', body: JSON.stringify(request), headers: {'Content-Type': 'application/json'}})
+            let response = await fetch(`${this.endpoint}/${request.session}`, {method: 'POST', body: JSON.stringify(request), headers: {'Content-Type': 'application/json'}})
             return await response.json()
         }
 

@@ -111,17 +111,3 @@ new df.Client('dialogflow-web-v2').connect()
     client.get().then(agent => console.log(agent))
 })
 ```
-
-Request with formatting option enabled (for iterating over components):
-
-```js
-client.request({
-    session: 'test',
-    queryInput: {
-        text: {
-            text: "Hello",
-            languageCode: "en"
-        }
-    }
-}, true)
-```
