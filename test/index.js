@@ -1,7 +1,7 @@
-let { Client } = require('./../index')
+const { Client } = require('./../index')
 
 /* Connecting Dialogflow Gateway Client */
-new Client('dialogflow-web-v2').connect()
+new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co').connect()
 .then(client => {
     /* Making Text request */
     client.request({

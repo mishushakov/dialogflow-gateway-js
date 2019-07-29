@@ -1,9 +1,12 @@
 # Dialogflow Gateway JavaScript SDK
 
-[Dialogflow Gateway](https://dialogflow.cloud.ushakov.co) is a cloud-based service, which connects Dialogflow V2 Agents to the World Wide Web
+Dialogflow Gateway enables third-party integrations to securely access the Dialogflow V2 API
 
-This is the Official Dialogflow Gateway JavaScript Client.
-It can be used both in browser and node as a replacement for the deprecated `dialogflow-javascript-client` library, by @dialogflow
+- [Documentation](https://github.com/mishushakov/dialogflow-gateway-docs)
+- [Implementations](https://github.com/mishushakov/dialogflow-gateway-docs#implementations)
+
+This is a JavaScript Client, that is compatitable with Dialogflow Gateway backends.
+It can be used both in browser and node as a drop-in replacement for the deprecated `dialogflow-javascript-client` library, by Dialogflow
 
 ⚡️ Blazing-fast and super-small (<10KB)
 
@@ -25,26 +28,24 @@ Browser:
 
 ## Usage
 
-Link your Agent to [Dialogflow Gateway](https://dialogflow.cloud.ushakov.co), you can find a detailed guide [here](https://github.com/mishushakov/dialogflow-gateway-docs/blob/master/guide.md)
-
-Then, import the library and connect client to your Gateway:
+Import the library and connect to your Dialogflow Gateway Endpoint:
 
 ```js
 import { Client } from 'dialogflow-gateway'
 
-new Client('<YOUR GOOGLE PROJECT ID HERE>').connect()
+new Client('<YOUR ENDPOINT HERE>').connect()
 ```
 
 ## Examples
 
-With Async/Await and ES Modules
+With Async/Await and ES Modules on [Dialogflow Gateway Hosted by Ushakov](https://dialogflow.cloud.ushakov.co)
 
 ```js
 import { Client } from 'dialogflow-gateway'
 
 async () => {
     /* Connecting Dialogflow Gateway Client */
-    let client = await new Client('dialogflow-web-v2').connect()
+    let client = await new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co').connect()
 
     /* Making Text request */
     let response = await client.request({
@@ -64,13 +65,13 @@ async () => {
 }
 ```
 
-Same code in NodeJS (with require and promises)
+Same code with require and promises
 
 ```js
-let { Client } = require('dialogflow-gateway')
+const { Client } = require('dialogflow-gateway')
 
 /* Connecting Dialogflow Gateway Client */
-new Client('dialogflow-web-v2').connect()
+new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co').connect()
 .then(client => {
     /* Making Text request */
     client.request({
@@ -93,7 +94,7 @@ Same code in Browser. Notice, that we are using the `df` scope
 
 ```js
 /* Connecting Dialogflow Gateway Client */
-new df.Client('dialogflow-web-v2').connect()
+new df.Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co').connect()
 .then(client => {
     /* Making Text request */
     client.request({

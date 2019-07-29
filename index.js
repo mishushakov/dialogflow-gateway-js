@@ -36,16 +36,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("isomorphic-fetch");
-/** Class representing Dialogflow Gateway Client */
+/* Class represents Dialogflow Gateway Client */
 var Client = /** @class */ (function () {
     /**
      * Create a Dialogflow Gateway Client
-     * @param id - The identifier of Google Cloud project, that is connected to Dialogflow Gateway
+     * @param endpoint - The URL to the Agent Dialogflow Gateway
      */
-    function Client(id) {
+    function Client(endpoint) {
         var _this = this;
-        this.id = id;
-        /** Connect the Dialogflow Gateway Client to Dialogflow Gateway */
+        this.endpoint = endpoint;
+        /* Connect the Dialogflow Gateway Client to Dialogflow Gateway */
         this.connect = function () { return __awaiter(_this, void 0, void 0, function () {
             var response, _a, error_1;
             return __generator(this, function (_b) {
@@ -67,7 +67,7 @@ var Client = /** @class */ (function () {
                 }
             });
         }); };
-        /** Get Information about connected Agent */
+        /* Get Information about connected Agent */
         this.get = function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, this.agent];
@@ -76,7 +76,6 @@ var Client = /** @class */ (function () {
         /**
          * Make request to Dialogflow Gateway
          * @param request - Request body
-         * @param format - Formatting mode
          */
         this.request = function (request) { return __awaiter(_this, void 0, void 0, function () {
             var response, error_2;
@@ -96,8 +95,7 @@ var Client = /** @class */ (function () {
                 }
             });
         }); };
-        this.id = id;
-        this.endpoint = "https://" + this.id + ".gateway.dialogflow.cloud.ushakov.co";
+        this.endpoint = this.endpoint;
         this.agent = null;
     }
     return Client;

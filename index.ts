@@ -1,24 +1,21 @@
 import 'isomorphic-fetch'
 import { Agent, DetectIntentRequest, DetectIntentResponse } from 'dialogflow'
 
-/** Class representing Dialogflow Gateway Client */
+/* Class represents Dialogflow Gateway Client */
 export class Client {
-    /** API Endpoint */
-    endpoint: string
-    /** Agent */
+    /* Agent */
     agent: Agent
 
     /**
      * Create a Dialogflow Gateway Client
-     * @param id - The identifier of Google Cloud project, that is connected to Dialogflow Gateway
+     * @param endpoint - The URL to the Agent Dialogflow Gateway
      */
-    constructor(public id: string){
-        this.id = id
-        this.endpoint = `https://${this.id}.gateway.dialogflow.cloud.ushakov.co`
+    constructor(public endpoint: string){
+        this.endpoint = this.endpoint
         this.agent = null
     }
 
-    /** Connect the Dialogflow Gateway Client to Dialogflow Gateway */
+    /* Connect the Dialogflow Gateway Client to Dialogflow Gateway */
     connect = async () => {
         try {
             let response = await fetch(this.endpoint)
@@ -31,7 +28,7 @@ export class Client {
         }
     }
 
-    /** Get Information about connected Agent */
+    /* Get Information about connected Agent */
     get = async () => {
         return this.agent
     }
@@ -39,7 +36,6 @@ export class Client {
     /**
      * Make request to Dialogflow Gateway
      * @param request - Request body
-     * @param format - Formatting mode
      */
     request = async (request: DetectIntentRequest): Promise<DetectIntentResponse> => {
         try {
