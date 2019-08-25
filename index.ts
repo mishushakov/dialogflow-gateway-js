@@ -28,7 +28,7 @@ export class Client {
     connect = (): Client => {
         this.wss_connection = new WebSocket(this.endpoint.replace('http', 'ws'))
         this.wss_connection.onerror = error => {
-            throw error
+            console.warn('Failed to connect via WebSocket, falling back to HTTP', error)
         }
 
         return this

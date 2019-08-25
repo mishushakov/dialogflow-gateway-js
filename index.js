@@ -23,7 +23,7 @@ var Client = /** @class */ (function () {
         this.connect = function () {
             _this.wss_connection = new WebSocket(_this.endpoint.replace('http', 'ws'));
             _this.wss_connection.onerror = function (error) {
-                throw error;
+                console.warn('Failed to connect via WebSocket, falling back to HTTP', error);
             };
             return _this;
         };

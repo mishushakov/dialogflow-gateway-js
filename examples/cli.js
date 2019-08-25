@@ -11,15 +11,7 @@ const lang = 'en' // <- Language
 const endpoint = `https://${appid}.gateway.dialogflow.cloud.ushakov.co` // <- endpoint
 
 /* Initialize client */
-const client = new Client(endpoint)
-
-try {
-    client.connect()
-}
-
-catch (e){
-    console.log('Failed to connect', e)
-}
+const client = new Client(endpoint).connect()
 
 /* Define the loop */
 const ask = () => {
