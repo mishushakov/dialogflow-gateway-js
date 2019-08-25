@@ -1,0 +1,40 @@
+<script src="./../build/bundle.js"></script>
+
+<input id="chat-input" placeholder="Message" />
+<button onclick="send()">Send</button>
+<ul id="chat"></ul>
+
+<script>
+    const endpoint = 'https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co'
+    const client = new df.Client(endpoint).connect()
+    const chat = document.querySelector('#chat')
+    const send = () => {
+        const text = document.querySelector('#chat-input').value
+        client.send({
+            session: 'test',
+            queryInput: {
+                text: {
+                    text: text,
+                    languageCode: 'en'
+                }
+            }
+        })
+        .then(message => {
+            const components = message.queryResult.fulfillmentMessages
+
+            let res
+            for (const component in components){
+                if (components[component].text) res = components[component].text.text[0]
+                else if (components[component].simpleResponses) res = components[component].simpleResponses.simpleResponses[0].textToSpeech
+            }
+
+            const e = document.createElement('li')
+            const e_text = document.createTextNode(res)
+            e.appendChild(e_text)
+            chat.appendChild(e)
+        })
+        .catch(error => {
+            throw error
+        })
+    }    
+</script>
