@@ -1,6 +1,6 @@
 {
   "name": "dialogflow-gateway",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "Dialogflow V2 JS SDK for node and browser. Written in TypeScript",
   "main": "./dist/index.js",
   "repository": "https://github.com/MishUshakov/dialogflow-gateway-js",
