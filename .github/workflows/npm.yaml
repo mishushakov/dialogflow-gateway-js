@@ -16,4 +16,5 @@ jobs:
         npm run build --if-present
     - name: Publish
       run: |
+        echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > .npmrc
         npm publish
