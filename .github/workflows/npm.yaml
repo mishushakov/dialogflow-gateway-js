@@ -1,0 +1,19 @@
+name: Build & publish to npm
+on:
+  push:
+    branches:
+      - master
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      env:
+        CI: true
+      run: |
+        npm install
+        npm run build --if-present
+    - name: Publish
+      run: |
+        npm publish

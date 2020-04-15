@@ -1,12 +1,12 @@
-<script src="./../build/bundle.js"></script>
+<script src="./../dist/bundle.js"></script>
 
 <input id="chat-input" placeholder="Message" />
 <button onclick="send()">Send</button>
 <ul id="chat"></ul>
 
 <script>
-    const endpoint = 'https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co'
-    const client = new df.Client(endpoint).connect()
+    const endpoint = 'https://dialogflow-web-v2.core.ushaflow.io'
+    const client = new df.Client(endpoint)
     const chat = document.querySelector('#chat')
     const send = () => {
         const text = document.querySelector('#chat-input').value
@@ -20,6 +20,7 @@
             }
         })
         .then(message => {
+            const text = document.querySelector('#chat-input').value = ''
             const components = message.queryResult.fulfillmentMessages
 
             let res

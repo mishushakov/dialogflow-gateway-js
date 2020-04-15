@@ -2,14 +2,14 @@ const path = require('path')
 
 module.exports = {
     context: path.resolve('./'),
-    entry: './index.ts',
+    entry: './src/index.ts',
     mode: 'production',
     optimization: {
         minimize: true
     },
     module: {
         rules: [{
-            test: require.resolve('./index.ts'),
+            test: require.resolve('./src/index.ts'),
             use: [{
                 loader: 'expose-loader',
                 options: 'df'
@@ -21,7 +21,7 @@ module.exports = {
         }]
     },
     output: {
-        path: path.resolve(__dirname, './build'),
+        path: path.resolve(__dirname, './dist'),
         filename: 'bundle.js'
     }
 }

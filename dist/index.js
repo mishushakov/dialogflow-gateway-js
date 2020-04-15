@@ -7,29 +7,16 @@ var Client = /** @class */ (function () {
      * Dialogflow Gateway Client
      * @param endpoint - URL pointing to the Agent on Dialogflow Gateway
      * ```typescript
-     * const client = new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co')
+     * const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
      * ```
      */
     function Client(endpoint) {
         var _this = this;
         this.endpoint = endpoint;
         /**
-         * Connect this Client to Dialogflow Gateway
-         * ```typescript
-         * const client = new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co')
-         * client.connect()
-         * ```
-         */
-        this.connect = function () {
-            _this.wss_connection = new WebSocket(_this.endpoint.replace('http', 'ws'));
-            _this.wss_connection.onerror = function () { return _this.wss_connection.close(); };
-            return _this;
-        };
-        /**
          *  Get Agent linked to this Client
          * ```typescript
-         * const client = new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co')
-         * client.connect()
+         * const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
          * client.get()
          * .then(agent => {
          *   console.log(agent)
@@ -59,8 +46,7 @@ var Client = /** @class */ (function () {
          * Send request to Dialogflow Gateway
          * @param request - Request body
          * ```typescript
-         * const client = new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co')
-         * client.connect()
+         * const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
          * client.send({
          *   session: 'test',
          *   queryInput: {
@@ -80,11 +66,11 @@ var Client = /** @class */ (function () {
          */
         this.send = function (request) {
             return new Promise(function (resolve, reject) {
-                if (_this.wss_connection && _this.wss_connection.readyState == 1) {
-                    _this.wss_connection.onmessage = function (message) {
+                if (_this.wss && _this.wss.readyState == 1) {
+                    _this.wss.onmessage = function (message) {
                         resolve(JSON.parse(message.data.toString()));
                     };
-                    _this.wss_connection.send(JSON.stringify(request));
+                    _this.wss.send(JSON.stringify(request));
                 }
                 else {
                     fetch(_this.endpoint, {
@@ -103,6 +89,8 @@ var Client = /** @class */ (function () {
             });
         };
         this.endpoint = endpoint;
+        this.wss = new WebSocket(this.endpoint.replace('http', 'ws'));
+        this.wss.onerror = function () { return _this.wss.close(); };
     }
     return Client;
 }());

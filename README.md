@@ -16,14 +16,14 @@ npm:
 
 `npm install dialogflow-gateway`
 
-Yarn:
+yarn:
 
 `yarn add dialogflow-gateway`
 
 Browser:
 
 ```html
-<script src="https://unpkg.com/dialogflow-gateway@latest/build/bundle.js"></script>
+<script src="https://unpkg.com/dialogflow-gateway@latest/dist/bundle.js"></script>
 ```
 
 ## Usage
@@ -33,10 +33,10 @@ Import the library and connect to your Dialogflow Gateway Endpoint:
 ```js
 import { Client } from 'dialogflow-gateway'
 
-new Client('<YOUR ENDPOINT HERE>').connect()
+new Client('<YOUR ENDPOINT HERE>')
 ```
 
-Note: Endpoint is a URL (example: https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co)
+Note: Endpoint is a URL (example: https://dialogflow-web-v2.core.ushaflow.io)
 
 ## Examples
 
@@ -47,7 +47,7 @@ import { Client } from 'dialogflow-gateway'
 
 async () => {
     /* Connect Dialogflow Gateway Client */
-    const client = new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co').connect()
+    const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
 
     /* Send text request */
     try {
@@ -86,7 +86,7 @@ Same code with require and promises
 const { Client } = require('dialogflow-gateway')
 
 /* Connect Dialogflow Gateway Client */
-const client = new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co').connect()
+const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
 
 /* Send text request */
 client.send({
@@ -119,7 +119,7 @@ Same code in Browser. Notice, that we are using the `df` scope
 
 ```js
 /* Connect Dialogflow Gateway Client */
-const client = new df.Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co').connect()
+const client = new df.Client('https://dialogflow-web-v2.core.ushaflow.io')
 
 /* Send text request */
 client.send({
@@ -149,5 +149,3 @@ client.get()
 ```
 
 For more examples see [examples directory](./examples)
-
-Thank you!

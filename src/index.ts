@@ -3,40 +3,27 @@ import WebSocket = require('isomorphic-ws')
 import { Agent, DetectIntentRequest, DetectIntentResponse } from 'dialogflow'
 
 export class Client {
-    agent: Agent
+    private agent: Agent
 
-    wss_connection: WebSocket
+    private wss: WebSocket
 
     /**
      * Dialogflow Gateway Client
      * @param endpoint - URL pointing to the Agent on Dialogflow Gateway
      * ```typescript
-     * const client = new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co')
+     * const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
      * ```
      */
     constructor(public endpoint: string){
         this.endpoint = endpoint
-    }
-
-    /**
-     * Connect this Client to Dialogflow Gateway
-     * ```typescript
-     * const client = new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co')
-     * client.connect()
-     * ```
-     */
-    connect = (): Client => {
-        this.wss_connection = new WebSocket(this.endpoint.replace('http', 'ws'))
-        this.wss_connection.onerror = () => this.wss_connection.close()
-
-        return this
+        this.wss = new WebSocket(this.endpoint.replace('http', 'ws'))
+        this.wss.onerror = () => this.wss.close()
     }
 
     /**
      *  Get Agent linked to this Client
      * ```typescript
-     * const client = new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co')
-     * client.connect()
+     * const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
      * client.get()
      * .then(agent => {
      *   console.log(agent)
@@ -66,8 +53,7 @@ export class Client {
      * Send request to Dialogflow Gateway
      * @param request - Request body
      * ```typescript
-     * const client = new Client('https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co')
-     * client.connect()
+     * const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
      * client.send({
      *   session: 'test',
      *   queryInput: {
@@ -87,12 +73,12 @@ export class Client {
      */
     send = (request: DetectIntentRequest): Promise<DetectIntentResponse> => {
         return new Promise((resolve, reject) => {
-            if (this.wss_connection && this.wss_connection.readyState == 1){
-                this.wss_connection.onmessage = message => {
+            if (this.wss && this.wss.readyState == 1){
+                this.wss.onmessage = message => {
                     resolve(JSON.parse(message.data.toString()))
                 }
 
-                this.wss_connection.send(JSON.stringify(request))
+                this.wss.send(JSON.stringify(request))
             }
 
             else {
