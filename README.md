@@ -8,7 +8,7 @@ Dialogflow Gateway enables third-party integrations to securely access the Dialo
 This is a JavaScript Client, that is compatitable with Dialogflow Gateway backends.
 It can be used both in browser and node as a drop-in replacement for the deprecated `dialogflow-javascript-client` library, by Dialogflow
 
-⚡️ Blazing-fast and super-small (3.4K gzipped)
+**Attention: v1.0 is no longer using promises to retrieve messages and relies on events instead**
 
 ## Installation
 
@@ -38,6 +38,11 @@ new Client('<YOUR ENDPOINT HERE>')
 
 Note: Endpoint is a URL (example: https://dialogflow-web-v2.core.ushaflow.io)
 
+## Events
+
+- `error`, returns error
+- `message`, returns the message body
+
 ## Examples
 
 With Async/Await and ES Modules on [Dialogflow Gateway Hosted by Ushakov](https://dialogflow.cloud.ushakov.co)
@@ -46,37 +51,32 @@ With Async/Await and ES Modules on [Dialogflow Gateway Hosted by Ushakov](https:
 import { Client } from 'dialogflow-gateway'
 
 async () => {
-    /* Connect Dialogflow Gateway Client */
-    const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
+  /* Connect Dialogflow Gateway Client */
+  const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
 
-    /* Send text request */
-    try {
-        const response = await client.send({
-            session: 'test',
-            queryInput: {
-                text: {
-                    text: 'Hello',
-                    languageCode: 'en'
-                }
-            }
-        })
-
-        console.log(response)
+  /* Send text request */
+  await client.send({
+    session: 'test',
+    queryInput: {
+      text: {
+        text: 'Hello',
+        languageCode: 'en'
+      }
     }
+  })
 
-    catch (error){
-        // Handle error
-    }
+  client.on('message', console.log)
+  client.error('message', console.error)
 
-    /* Retrieve the Agent */
-    try {
-        const agent = await client.get())
-        console.log(agent)
-    }
+  /* Retrieve the Agent */
+  try {
+    const agent = await client.get())
+    console.log(agent)
+  }
 
-    catch (error){
-        // Handle error
-    }
+  catch (error){
+    // Handle error
+  }
 }
 ```
 
@@ -90,28 +90,25 @@ const client = new Client('https://dialogflow-web-v2.core.ushaflow.io')
 
 /* Send text request */
 client.send({
-    session: 'test',
-    queryInput: {
-        text: {
-            text: 'Hello',
-            languageCode: 'en'
-        }
+  session: 'test',
+  queryInput: {
+    text: {
+      text: 'Hello',
+      languageCode: 'en'
     }
+  }
 })
-.then(response => {
-    console.log(response)
-})
-.catch(error => {
-    // Handle Error
-})
+
+client.on('message', console.log)
+client.error('message', console.error)
 
 /* Retrieve the Agent */
 client.get()
 .then(agent => {
-    console.log(agent)
+  console.log(agent)
 })
 .catch(error => {
-    // Handle Error
+  // Handle Error
 })
 ```
 
@@ -123,28 +120,25 @@ const client = new df.Client('https://dialogflow-web-v2.core.ushaflow.io')
 
 /* Send text request */
 client.send({
-    session: 'test',
-    queryInput: {
-        text: {
-            text: 'Hello',
-            languageCode: 'en'
-        }
+  session: 'test',
+  queryInput: {
+    text: {
+      text: 'Hello',
+      languageCode: 'en'
     }
+  }
 })
-.then(response => {
-    console.log(response)
-})
-.catch(error => {
-    // Handle Error
-})
+
+client.on('message', console.log)
+client.error('message', console.error)
 
 /* Retrieve the Agent */
 client.get()
 .then(agent => {
-    console.log(agent)
+  console.log(agent)
 })
 .catch(error => {
-    // Handle Error
+  // Handle Error
 })
 ```
 

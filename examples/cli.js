@@ -1,7 +1,7 @@
 const { Client } = require('./../dist')
 const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
+  input: process.stdin,
+  output: process.stdout
 })
 
 /* Define variables */
@@ -15,47 +15,35 @@ const client = new Client(endpoint)
 
 /* Define the loop */
 const ask = () => {
-    /* Ask for your message */
-    readline.question('You: ', async text => {
-        /* Make a request */
-        try {
-            const message = await client.send({
-                session,
-                queryInput: {
-                    text: {
-                        text,
-                        languageCode: lang
-                    }
-                }
-            })
-
-            try {
-                /* Parse components */
-                const components = message.queryResult.fulfillmentMessages
-                for (const component in components){
-                /* Display Dialogflow/Webhook Messages */
-                    if (components[component].text){
-                        console.log(`Bot: ${components[component].text.text[0]}`)
-                    }
-
-                    /* Display Actions on Google Simple Response */
-                    else if (components[component].simpleResponses){
-                        console.log(`Bot: ${components[component].simpleResponses.simpleResponses[0].textToSpeech}`)
-                    }
-
-                    ask() // <- Restart the messages loop
-                }
-            }
-
-            catch (e){
-                console.log(e)
-            }
+  /* Ask for your message */
+  readline.question('You: ', async text => {
+    /* Make a request */
+    await client.send({
+      session,
+      queryInput: {
+        text: {
+          text,
+          languageCode: lang
         }
-
-        catch (e){
-            console.log(e)
-        }
+      }
     })
+  })
 }
+
+client.on('message', message => {
+  const components = message.queryResult.fulfillmentMessages
+  for (const component in components) {
+    /* Display Dialogflow/Webhook Messages */
+    if (components[component].text) {
+      console.log(`Bot: ${components[component].text.text[0]}`)
+    } else if (components[component].simpleResponses) {
+      console.log(`Bot: ${components[component].simpleResponses.simpleResponses[0].textToSpeech}`)
+    }
+  }
+
+  ask() // <- Restart the messages loop
+})
+
+client.on('error', console.error)
 
 ask()

@@ -6,7 +6,8 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "lib": ["es2016", "dom", "es5"],
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "strictNullChecks": true
     },
     "exclude": [
         "node_modules"
